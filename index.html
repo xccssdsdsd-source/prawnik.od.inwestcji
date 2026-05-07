@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karolina Czechowska — Radca Prawny od Inwestycji</title>
+<meta name="description" content="Radca prawny i certyfikowany mediator. Kompleksowa obsługa prawna procesu inwestycyjnego od gruntu do sprzedaży. Współpraca B2B, cała Polska.">
+<meta property="og:title" content="Karolina Czechowska — Radca Prawny od Inwestycji">
+<meta property="og:description" content="Radca prawny i certyfikowany mediator. Kompleksowa obsługa prawna procesu inwestycyjnego od gruntu do sprzedaży.">
+<meta property="og:image" content="logo.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/jpeg" href="logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#F7F0E6;
+  --bg2:#EFE5D5;
+  --surface:#E8D9C5;
+  --border:#CDBCA5;
+  --gold:#8B5E2F;
+  --gold-l:#A67A45;
+  --gold-m:#6B4520;
+  --gold-s:#3D2010;
+  --cream:#2C1A0E;
+  --muted:#7A6251;
+}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  background:var(--bg);
+  color:var(--cream);
+  font-family:'Inter',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+  cursor:none;
+}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--gold-m);}
+::selection{background:rgba(139,94,47,.18);color:var(--gold-s);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+
+#cur-dot,#cur-ring{
+  position:fixed;border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+}
+#cur-dot{width:6px;height:6px;background:var(--gold);transition:width .2s,height .2s,background .2s;}
+#cur-ring{
+  width:36px;height:36px;
+  border:1px solid rgba(139,94,47,.4);
+  transition:width .4s cubic-bezier(.23,1,.32,1),
+             height .4s cubic-bezier(.23,1,.32,1),
+             border-color .3s,background .3s;
+}
+body.c-hover #cur-ring{width:54px;height:54px;border-color:var(--gold);background:rgba(139,94,47,.05);}
+body.c-cta #cur-ring{width:72px;height:72px;border-color:var(--gold);background:rgba(139,94,47,.08);}
+
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.018;pointer-events:none;z-index:9000;
+}
+
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:20px 0;
+  transition:padding .5s cubic-bezier(.23,1,.32,1),
+             background .5s,border-color .5s;
+}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;}
+nav.scrolled{
+  padding:12px 0;
+  background:rgba(247,240,230,.92);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+}
+nav .wrap{padding:0 64px;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-logo img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:1.5px solid var(--border);transition:border-color .3s;}
+.nav-logo:hover img{border-color:var(--gold);}
+.nav-logo-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--cream);letter-spacing:.04em;}
+.nav-links{display:flex;gap:44px;list-style:none;}
+.nav-links a{
+  font-family:'Inter',sans-serif;font-size:11px;
+  font-weight:400;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;
+  transition:color .3s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-5px;left:0;
+  width:0;height:1px;background:var(--gold);
+  transition:width .35s cubic-bezier(.23,1,.32,1);
+}
+.nav-links a:hover{color:var(--cream);}
+.nav-links a:hover::after{width:100%;}
+
+.hamburger{
+  display:none;flex-direction:column;gap:6px;
+  background:none;border:none;cursor:none;padding:4px;
+}
+.hamburger span{
+  display:block;width:26px;height:1px;background:var(--cream);
+  transition:transform .4s cubic-bezier(.23,1,.32,1),opacity .4s;transform-origin:center;
+}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+.mob-nav{
+  position:fixed;inset:0;background:var(--bg);
+  z-index:99;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:44px;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s;
+}
+.mob-nav.open{opacity:1;pointer-events:all;}
+.mob-nav a{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;font-weight:300;color:var(--cream);
+  text-decoration:none;transition:color .3s;
+}
+.mob-nav a:hover{color:var(--gold);}
+
+.caption{
+  font-family:'Inter',sans-serif;font-size:10px;font-weight:400;
+  letter-spacing:.32em;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:14px;margin-bottom:28px;
+}
+.caption::before{
+  content:'';display:block;width:28px;height:1px;
+  background:var(--gold);flex-shrink:0;
+}
+.section-pad{padding:140px 64px;}
+.wrap{max-width:1280px;margin:0 auto;width:100%;}
+.gold-line{
+  width:100%;height:1px;
+  background:linear-gradient(to right,transparent,var(--gold-m) 20%,var(--gold) 50%,var(--gold-m) 80%,transparent);
+  opacity:.28;transform-origin:center;
+}
+.corner.tl{position:absolute;top:-8px;left:-8px;width:28px;height:28px;border-top:1.5px solid var(--gold);border-left:1.5px solid var(--gold);}
+.corner.br{position:absolute;bottom:-8px;right:-8px;width:28px;height:28px;border-bottom:1.5px solid var(--gold);border-right:1.5px solid var(--gold);}
+
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  text-decoration:none;padding:17px 34px;
+  border:none;cursor:none;position:relative;overflow:hidden;
+  transition:color .3s;
+}
+.btn-gold{background:var(--gold);color:#F7F0E6;}
+.btn-ghost{
+  background:transparent;color:var(--cream);
+  border:1px solid var(--border);
+}
+.btn::after{
+  content:'';position:absolute;inset:0;
+  transform:translateX(-101%);
+  transition:transform .45s cubic-bezier(.23,1,.32,1);
+}
+.btn-gold::after{background:var(--gold-l);}
+.btn-ghost::after{background:rgba(139,94,47,.06);}
+.btn:hover::after{transform:translateX(0);}
+.btn > *{position:relative;z-index:1;}
+
+#hero{
+  min-height:100vh;
+  display:flex;flex-direction:row;
+  align-items:flex-start;justify-content:space-between;
+  text-align:left;position:relative;overflow:hidden;
+  padding:80px 64px 80px;background:var(--bg);gap:80px;
+}
+.hero-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 68% 52%,rgba(205,188,165,.3) 0%,transparent 62%);
+}
+.hero-glow{
+  position:absolute;top:10%;right:5%;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(139,94,47,.05) 0%,transparent 65%);
+  pointer-events:none;
+  animation:glow-pulse 6s ease-in-out infinite;
+}
+@keyframes glow-pulse{0%,100%{transform:scale(1);opacity:.6;}50%{transform:scale(1.12);opacity:1;}}
+
+.hero-text{position:relative;z-index:2;padding:0;max-width:600px;flex:1;}
+
+.hero-eyebrow{
+  font-family:'Inter',sans-serif;font-size:9.5px;font-weight:400;
+  letter-spacing:.36em;text-transform:uppercase;color:var(--gold);
+  display:inline-flex;align-items:center;gap:14px;margin-bottom:36px;
+  opacity:0;transform:translateX(-20px);
+}
+.hero-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--gold);}
+
+.hero-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(60px,7.5vw,112px);
+  font-weight:300;line-height:.92;
+  letter-spacing:-.025em;color:var(--cream);
+  margin-bottom:20px;
+  overflow:hidden;
+}
+.hero-name .line{overflow:hidden;display:block;}
+.hero-name .line span{display:block;transform:translateY(108%);}
+
+.hero-tagline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(18px,2.2vw,26px);font-weight:300;font-style:italic;
+  color:var(--gold-l);margin-bottom:36px;
+  opacity:0;transform:translateY(16px);
+}
+.hero-rule{
+  width:0;height:1px;
+  background:linear-gradient(to right,transparent,var(--gold),transparent);
+  margin:0 0 32px;
+}
+.hero-desc{
+  font-family:'Inter',sans-serif;font-size:15px;font-weight:300;
+  line-height:1.85;color:var(--muted);max-width:520px;
+  margin:0 0 48px;opacity:0;transform:translateY(16px);
+}
+.hero-actions{
+  display:flex;align-items:center;justify-content:flex-start;gap:28px;flex-wrap:wrap;
+  opacity:0;transform:translateY(16px);
+}
+.btn-link{
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:400;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  text-decoration:none;display:flex;align-items:center;gap:8px;
+  transition:color .3s;
+}
+.btn-link:hover{color:var(--cream);}
+.btn-link svg{transition:transform .3s;}
+.btn-link:hover svg{transform:translateY(4px);}
+
+.hero-img-wrap{
+  position:relative;z-index:2;
+  display:flex;justify-content:center;align-items:flex-start;
+  flex-shrink:0;margin-top:100px;
+}
+.hero-img-box{
+  position:relative;width:420px;max-width:100%;
+  opacity:0;transform:translateX(50px);
+}
+.hero-img-frame{
+  position:relative;aspect-ratio:4/5;overflow:hidden;
+}
+.hero-img-frame::before{
+  content:'';position:absolute;inset:0;z-index:2;
+  background:linear-gradient(140deg,rgba(139,94,47,.15) 0%,transparent 40%,rgba(139,94,47,.08) 100%);
+  pointer-events:none;
+}
+.hero-img-frame img,.hero-img-ph{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.hero-img-ph{
+  background:linear-gradient(155deg,var(--surface) 0%,var(--border) 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-img-ph .ini{
+  font-family:'Cormorant Garamond',serif;font-size:80px;
+  font-weight:300;color:rgba(139,94,47,.25);
+}
+.hero-card{
+  position:absolute;bottom:-20px;left:-28px;
+  background:var(--bg);border:1px solid var(--border);
+  padding:18px 24px;z-index:3;
+  box-shadow:0 8px 32px rgba(139,94,47,.08);
+}
+.hero-card-val{
+  font-family:'Cormorant Garamond',serif;font-size:28px;
+  font-weight:300;color:var(--gold);line-height:1;
+}
+.hero-card-lbl{
+  font-family:'Inter',sans-serif;font-size:9.5px;font-weight:400;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
+  margin-top:4px;
+}
+.hero-card2{
+  position:absolute;top:32px;right:-24px;
+  background:var(--bg);border:1px solid var(--border);
+  padding:14px 20px;z-index:3;
+  box-shadow:0 8px 32px rgba(139,94,47,.08);
+}
+.hero-card2 .val2{
+  font-family:'Cormorant Garamond',serif;font-size:20px;
+  font-weight:300;color:var(--gold-l);line-height:1;
+}
+.hero-card2 .lbl2{
+  font-family:'Inter',sans-serif;font-size:9px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  margin-top:4px;
+}
+.scroll-hint{
+  position:absolute;bottom:44px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  opacity:0;animation:fadeUp .8s 2.4s forwards;
+}
+.s-line{width:1px;height:52px;background:linear-gradient(to bottom,transparent,var(--gold-m));animation:s-pulse 2.2s infinite;}
+.s-txt{font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-lr;}
+@keyframes s-pulse{0%,100%{opacity:.5;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.15);}}
+
+#about{
+  padding:140px 0;background:var(--bg2);
+  position:relative;overflow:hidden;
+}
+#about .wrap{
+  display:grid;grid-template-columns:1fr 1.05fr;
+  gap:90px;align-items:center;
+  padding:0 64px;
+}
+#about::before{
+  content:'KC';
+  position:absolute;right:-40px;bottom:-60px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:320px;font-weight:300;
+  color:rgba(139,94,47,.04);line-height:1;
+  pointer-events:none;user-select:none;letter-spacing:-.05em;
+}
+.abt-img-side{position:relative;}
+.abt-img-box{
+  position:relative;aspect-ratio:3/4;
+  max-width:420px;overflow:hidden;
+}
+.abt-img-box img,.abt-img-ph{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.abt-img-ph{
+  background:linear-gradient(155deg,var(--surface) 0%,var(--border) 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.abt-img-box::after{
+  content:'';position:absolute;
+  top:16px;left:16px;right:-16px;bottom:-16px;
+  border:1px solid rgba(139,94,47,.22);z-index:-1;
+}
+.abt-tag{
+  position:absolute;top:36px;right:-36px;
+  background:var(--bg);border:1px solid var(--border);
+  padding:18px 22px;z-index:3;
+  box-shadow:0 8px 32px rgba(139,94,47,.08);
+}
+.abt-tag-val{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--gold);line-height:1;}
+.abt-tag-lbl{font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+
+.abt-text h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(38px,3.8vw,56px);font-weight:300;
+  color:var(--cream);line-height:1.1;margin-bottom:28px;
+}
+.abt-text h2 em{font-style:italic;color:var(--gold);}
+.abt-text p{
+  font-family:'Inter',sans-serif;font-size:15px;font-weight:300;
+  line-height:1.9;color:var(--muted);margin-bottom:20px;
+}
+.abt-rule{width:64px;height:1px;background:var(--gold);margin:36px 0;}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px;}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 14px;border:1px solid var(--border);
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:400;
+  letter-spacing:.08em;color:var(--muted);
+  transition:border-color .3s,color .3s;
+}
+.badge:hover{border-color:var(--gold-m);color:var(--cream);}
+.badge-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;}
+.stat{padding:20px 0;border-top:1px solid var(--border);}
+.stat-v{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--gold);line-height:1;margin-bottom:6px;}
+.stat-l{font-family:'Inter',sans-serif;font-size:10px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);line-height:1.4;}
+.abt-text p,.abt-rule,.badges,.stats,.svc-card p,.svc-card .svc-num,.svc-card .svc-icon,.proc-head p,.proc-step p,.proc-step .step-num{filter:blur(5px);user-select:none;pointer-events:none;}
+
+#services{padding:140px 0;background:var(--bg);position:relative;}
+#services .wrap{padding:0 64px;}
+.svc-head{text-align:center;margin-bottom:80px;}
+.svc-head .caption{justify-content:center;}
+.svc-head h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(38px,5vw,62px);font-weight:300;
+  color:var(--cream);line-height:1.1;
+}
+.svc-head h2 em{font-style:italic;color:var(--gold);}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+
+.svc-card{
+  background:var(--surface);padding:48px 38px;
+  position:relative;overflow:hidden;cursor:none;
+  transition:background .4s;
+}
+.svc-card::before{
+  content:'';position:absolute;bottom:0;left:0;
+  height:2px;width:0;
+  background:linear-gradient(to right,var(--gold),var(--gold-l));
+  transition:width .6s cubic-bezier(.23,1,.32,1);
+}
+.svc-card::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 110%,rgba(139,94,47,.06) 0%,transparent 68%);
+  opacity:0;transition:opacity .4s;pointer-events:none;
+}
+.svc-card:hover{background:var(--border);}
+.svc-card:hover::before{width:100%;}
+.svc-card:hover::after{opacity:1;}
+
+.svc-num{
+  position:absolute;top:36px;right:36px;
+  font-family:'Cormorant Garamond',serif;font-size:60px;font-weight:300;
+  color:rgba(139,94,47,.08);line-height:1;
+  transition:color .4s;
+}
+.svc-card:hover .svc-num{color:rgba(139,94,47,.15);}
+.svc-icon{width:44px;height:44px;color:var(--gold);opacity:.8;margin-bottom:26px;transition:opacity .3s,transform .4s cubic-bezier(.23,1,.32,1);}
+.svc-card:hover .svc-icon{opacity:1;transform:translateY(-5px);}
+.svc-card h3{
+  font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;
+  color:var(--cream);margin-bottom:14px;line-height:1.3;
+  transition:color .3s;
+}
+.svc-card:hover h3{color:var(--gold-m);}
+.svc-card p{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:300;line-height:1.8;color:var(--muted);}
+
+#gallery{padding:120px 64px;background:var(--bg2);}
+.gal-head{text-align:center;margin-bottom:60px;}
+.gal-head .caption{justify-content:center;}
+.gal-head h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,4.5vw,58px);font-weight:300;
+  color:var(--cream);line-height:1.1;
+}
+.gal-head h2 em{font-style:italic;color:var(--gold);}
+.gal-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+.gal-item{
+  position:relative;aspect-ratio:3/4;overflow:hidden;cursor:none;
+}
+.gal-item img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .7s cubic-bezier(.23,1,.32,1),filter .5s;
+  filter:sepia(.08) contrast(1.03) brightness(1.01);
+}
+.gal-item:hover img{transform:scale(1.06);filter:sepia(.0) contrast(1.05) brightness(1.03);}
+.gal-item::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(44,26,14,.28) 0%,transparent 50%);
+  opacity:0;transition:opacity .5s;
+}
+.gal-item:hover::after{opacity:1;}
+
+#process{padding:140px 0;background:var(--bg);position:relative;overflow:hidden;}
+#process .wrap{padding:0 64px;}
+#process::before{
+  content:'';position:absolute;top:-180px;right:-180px;
+  width:560px;height:560px;border-radius:50%;
+  background:radial-gradient(circle,rgba(139,94,47,.04) 0%,transparent 60%);
+  pointer-events:none;
+}
+.proc-head{max-width:580px;margin-bottom:80px;}
+.proc-head h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,4vw,54px);font-weight:300;
+  color:var(--cream);line-height:1.1;margin-bottom:18px;
+}
+.proc-head h2 em{font-style:italic;color:var(--gold);}
+.proc-head p{font-family:'Inter',sans-serif;font-size:15px;font-weight:300;color:var(--muted);line-height:1.8;}
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+.proc-grid::before{
+  content:'';position:absolute;top:27px;left:40px;right:40px;
+  height:1px;background:linear-gradient(to right,var(--gold-m),transparent);
+  opacity:.35;
+}
+.proc-step{padding:0 22px;}
+.step-num{
+  width:54px;height:54px;background:var(--bg);
+  border:1px solid var(--gold-m);display:flex;
+  align-items:center;justify-content:center;
+  margin-bottom:28px;position:relative;
+  transition:border-color .3s,background .3s;
+}
+.step-num::after{content:'';position:absolute;inset:5px;background:rgba(139,94,47,.06);}
+.proc-step:hover .step-num{border-color:var(--gold);background:rgba(139,94,47,.04);}
+.step-num span{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--gold);position:relative;z-index:1;}
+.proc-step h4{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--cream);margin-bottom:10px;}
+.proc-step p{font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--muted);line-height:1.75;}
+
+#contact{
+  padding:140px 0;background:var(--bg2);
+  position:relative;overflow:hidden;
+}
+#contact .wrap{
+  display:grid;grid-template-columns:1fr 1fr;gap:90px;
+  align-items:start;padding:0 64px;
+}
+#contact::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 28% 50%,rgba(205,188,165,.35) 0%,transparent 58%);
+  pointer-events:none;
+}
+.cnt-text{position:relative;z-index:1;}
+.cnt-text h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(38px,4vw,56px);font-weight:300;
+  color:var(--cream);line-height:1.1;margin-bottom:22px;
+}
+.cnt-text h2 em{font-style:italic;color:var(--gold);}
+.cnt-text p{font-family:'Inter',sans-serif;font-size:15px;font-weight:300;line-height:1.9;color:var(--muted);margin-bottom:40px;}
+.cnt-items{display:flex;flex-direction:column;gap:18px;margin-bottom:44px;}
+.cnt-item{display:flex;align-items:center;gap:14px;}
+.cnt-ico{
+  width:40px;height:40px;background:var(--bg);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;color:var(--gold);transition:border-color .3s;
+}
+.cnt-item:hover .cnt-ico{border-color:var(--gold-m);}
+.cnt-item-txt{font-family:'Inter',sans-serif;font-size:14px;font-weight:300;color:var(--muted);}
+.cnt-item-txt a{color:inherit;text-decoration:none;transition:color .3s;}
+.cnt-item-txt a:hover{color:var(--cream);}
+.cnt-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px;}
+.social-row{display:flex;gap:10px;margin-top:8px;}
+.soc{
+  width:42px;height:42px;background:var(--bg);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);text-decoration:none;
+  transition:border-color .3s,color .3s;
+}
+.soc:hover{border-color:var(--gold);color:var(--gold);}
+
+.cnt-panel{
+  position:relative;z-index:1;
+  background:var(--bg);border:1px solid var(--border);
+  padding:52px 46px;
+  box-shadow:0 12px 48px rgba(139,94,47,.06);
+}
+.cnt-panel::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,var(--gold-m),var(--gold),var(--gold-m));
+}
+.cnt-panel h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--cream);margin-bottom:6px;}
+.cnt-panel .sub{font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--muted);margin-bottom:36px;}
+.fgrp{margin-bottom:22px;}
+.fgrp label{display:block;font-family:'Inter',sans-serif;font-size:9.5px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.fgrp input,.fgrp textarea{
+  width:100%;background:transparent;
+  border:none;border-bottom:1px solid var(--border);
+  color:var(--cream);font-family:'Inter',sans-serif;
+  font-size:14px;font-weight:300;
+  padding:10px 0;outline:none;cursor:none;
+  transition:border-color .3s;
+}
+.fgrp input:focus,.fgrp textarea:focus{border-bottom-color:var(--gold);}
+.fgrp textarea{resize:none;height:76px;}
+.fgrp input::placeholder,.fgrp textarea::placeholder{color:rgba(122,98,81,.38);}
+.btn-submit{
+  width:100%;background:var(--gold);color:var(--bg);
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:18px;border:none;cursor:none;
+  margin-top:8px;position:relative;overflow:hidden;
+}
+.btn-submit::after{
+  content:'';position:absolute;inset:0;
+  background:var(--gold-l);transform:translateX(-101%);
+  transition:transform .45s cubic-bezier(.23,1,.32,1);
+}
+.btn-submit:hover::after{transform:translateX(0);}
+.btn-submit > span{position:relative;z-index:1;}
+
+footer{
+  padding:36px 0;background:var(--bg2);
+  border-top:1px solid var(--border);
+}
+footer .wrap{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:20px;padding:0 64px;
+}
+.ft-logo{display:flex;align-items:center;gap:10px;}
+.ft-logo img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:1px solid var(--border);}
+.ft-logo-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--gold);}
+.ft-mid{text-align:center;}
+.ft-mid p{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+.ft-right{display:flex;align-items:center;gap:14px;}
+.ft-right p{font-family:'Inter',sans-serif;font-size:11px;color:var(--muted);}
+.ft-right a{color:var(--muted);transition:color .3s;text-decoration:none;}
+.ft-right a:hover{color:var(--gold);}
+
+
+#preloader{
+  position:fixed;inset:0;z-index:99999;
+  background:var(--bg);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+#preloader.out{
+  opacity:0;pointer-events:none;
+  transition:opacity .9s 0s cubic-bezier(.23,1,.32,1);
+}
+.pre-mono{
+  font-family:'Cormorant Garamond',serif;font-size:88px;font-weight:300;
+  color:var(--gold);letter-spacing:.12em;overflow:hidden;
+}
+.pre-mono span{display:block;transform:translateY(105%);transition:transform 1s cubic-bezier(.23,1,.32,1);}
+.pre-mono.vis span{transform:translateY(0);}
+.pre-sub{
+  font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.4em;
+  text-transform:uppercase;color:var(--muted);margin-top:18px;
+  opacity:0;transition:opacity .7s .6s;
+}
+.pre-sub.vis{opacity:1;}
+.pre-prog{
+  width:160px;height:1px;background:var(--border);
+  margin-top:36px;overflow:hidden;position:relative;
+}
+.pre-prog-fill{
+  position:absolute;left:0;top:0;height:100%;
+  background:var(--gold);width:0;
+  transition:width 1.4s .2s cubic-bezier(.23,1,.32,1);
+}
+.pre-prog-fill.vis{width:100%;}
+
+#pg-bar{
+  position:fixed;top:0;left:0;height:2px;z-index:9998;
+  background:linear-gradient(to right,var(--gold-m),var(--gold));
+  transform-origin:left center;transform:scaleX(0);
+  pointer-events:none;
+}
+
+.marquee-wrap{
+  overflow:hidden;padding:18px 0;background:var(--gold-m);
+  position:relative;z-index:1;
+}
+.marquee-track{
+  display:flex;white-space:nowrap;
+  animation:mq 36s linear infinite;
+}
+.marquee-item{
+  font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:300;
+  color:rgba(247,240,230,.72);letter-spacing:.14em;
+  padding:0 44px;display:inline-flex;align-items:center;gap:28px;
+  flex-shrink:0;
+}
+.marquee-item::after{content:'◆';font-size:7px;color:rgba(247,240,230,.3);}
+@keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+.split-line{overflow:hidden;display:block;}
+.split-line-inner{display:block;transform:translateY(105%);}
+
+.char-split{display:inline-block;overflow:hidden;vertical-align:bottom;}
+.char-inner{display:inline-block;transform:translateY(102%);}
+
+@media(max-width:1080px){
+  #hero{flex-direction:column;padding:120px 40px 80px;gap:48px;text-align:center;align-items:center;}
+  .hero-text{max-width:560px;}
+  .hero-img-wrap{margin-top:0;width:100%;display:flex;justify-content:center;}
+  .hero-img-box{width:320px;}
+  .hero-img-frame{aspect-ratio:4/5;}
+  .hero-rule{margin:0 auto 32px;}
+  .hero-desc{margin:0 auto 48px;}
+  .hero-actions{justify-content:center;}
+  nav .wrap,.hero-text,#about .wrap,#services .wrap,#process .wrap,#contact .wrap,footer .wrap{padding-left:40px;padding-right:40px;}
+  #about .wrap{grid-template-columns:1fr;gap:60px;}
+  .abt-tag{right:0;}
+  .svc-grid{grid-template-columns:repeat(2,1fr);}
+  #contact .wrap{grid-template-columns:1fr;}
+  .proc-grid{grid-template-columns:repeat(2,1fr);gap:40px;}
+  .proc-grid::before{display:none;}
+}
+@media(max-width:680px){
+  #hero{padding:100px 24px 60px;gap:36px;}
+  .hero-img-box{width:240px;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  nav .wrap,.hero-text,#about .wrap,#services .wrap,#process .wrap,#contact .wrap,footer .wrap{padding-left:24px;padding-right:24px;}
+  .svc-grid{grid-template-columns:1fr;}
+  .proc-grid{grid-template-columns:1fr;}
+  footer .wrap{flex-direction:column;text-align:center;}
+  .stats{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<div id="pg-bar"></div>
+
+<div id="preloader">
+  <div class="pre-mono" id="preMono"><span>KC</span></div>
+  <div class="pre-sub" id="preSub">Radca prawny od inwestycji</div>
+  <div class="pre-prog"><div class="pre-prog-fill" id="preProgFill"></div></div>
+</div>
+
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<div class="mob-nav" id="mobNav">
+  <a href="#hero" onclick="closeNav()">Start</a>
+  <a href="#about" onclick="closeNav()">O mnie</a>
+  <a href="#services" onclick="closeNav()">Usługi</a>
+  <a href="#process" onclick="closeNav()">Proces</a>
+  <a href="#contact" onclick="closeNav()">Kontakt</a>
+</div>
+
+<nav id="mainNav">
+  <div class="wrap">
+    <a href="#hero" class="nav-logo">
+      <img src="logo.jpg" alt="Logo Karoliny Czechowskiej">
+      <span class="nav-logo-name">Karolina Czechowska</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">O mnie</a></li>
+      <li><a href="#services">Usługi</a></li>
+      <li><a href="#process">Proces</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+    <button class="hamburger" id="hbg" onclick="toggleNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-text">
+    <div class="hero-eyebrow" id="heroEye">Radca prawny · Mediator · Polska</div>
+
+    <h1 class="hero-name" id="heroName">
+      <span class="line"><span id="w1">Karolina</span></span>
+      <span class="line"><span id="w2">Czechowska</span></span>
+    </h1>
+
+    <div class="hero-tagline" id="heroTag">Radca prawny od inwestycji</div>
+    <div class="hero-rule" id="heroRule"></div>
+
+    <p class="hero-desc" id="heroDesc">
+      Kompleksowa obsługa prawna procesu inwestycyjnego&nbsp;— od analizy gruntu po sprzedaż lokali. Bezpiecznie, sprawnie, z pełną odpowiedzialnością.
+    </p>
+
+    <div class="hero-actions" id="heroActs">
+      <a href="#contact" class="btn btn-gold">
+        <span>Umów konsultację</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#about" class="btn-link">
+        Dowiedz się więcej
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-img-wrap" id="heroImg">
+    <div class="hero-img-box">
+      <div class="hero-img-frame">
+        <img src="logo.jpg" alt="Karolina Czechowska">
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="s-line"></div>
+    <span class="s-txt">Scroll</span>
+  </div>
+</section>
+
+<div class="gold-line" id="gl1"></div>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Umowy deweloperskie</span>
+    <span class="marquee-item">Obsługa inwestycji</span>
+    <span class="marquee-item">Mediacja</span>
+    <span class="marquee-item">Prawo nieruchomości</span>
+    <span class="marquee-item">Radca prawny</span>
+    <span class="marquee-item">Cała Polska</span>
+    <span class="marquee-item">Umowy deweloperskie</span>
+    <span class="marquee-item">Obsługa inwestycji</span>
+    <span class="marquee-item">Mediacja</span>
+    <span class="marquee-item">Prawo nieruchomości</span>
+    <span class="marquee-item">Radca prawny</span>
+    <span class="marquee-item">Cała Polska</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+  <div class="abt-img-side" id="abtImgSide">
+    <div class="abt-img-box">
+      <div class="corner tl"></div>
+      <div class="corner br"></div>
+      <img src="ImageDownloader_www.instagram.com_641822592_17885974860452042_4248476358131580759_n.jpg" alt="Karolina Czechowska"
+        onerror="this.style.display='none';document.getElementById('abtPh').style.display='flex'">
+      <div id="abtPh" class="abt-img-ph" style="display:none">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:60px;font-weight:300;color:rgba(139,94,47,.25)">KC</span>
+      </div>
+    </div>
+    <div class="abt-tag">
+      <div class="abt-tag-val">10+</div>
+      <div class="abt-tag-lbl">Lat doświadczenia</div>
+    </div>
+  </div>
+
+  <div class="abt-text" id="abtText">
+    <div class="caption">O mnie</div>
+    <h2>Prawo inwestycyjne<br>to moja <em>specjalizacja</em></h2>
+
+    <p>Jestem radcą prawnym i certyfikowanym mediatorem z wieloletnią praktyką w obsłudze procesów inwestycyjnych. Pomagam deweloperom, inwestorom i biurom nieruchomości przejść przez każdy etap inwestycji bezpiecznie i sprawnie.</p>
+
+    <p>Moje podejście łączy precyzję prawnika z nastawieniem na realny wynik dla klienta — nie tylko zabezpieczam, ale pomagam podejmować trafne decyzje na każdym etapie projektu.</p>
+
+    <div class="abt-rule" id="abtRule"></div>
+
+    <div class="badges">
+      <div class="badge"><span class="badge-dot"></span>Radca prawny</div>
+      <div class="badge"><span class="badge-dot"></span>Certyfikowany mediator</div>
+      <div class="badge"><span class="badge-dot"></span>Prawo nieruchomości</div>
+      <div class="badge"><span class="badge-dot"></span>Umowy deweloperskie</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-v">360°</div>
+        <div class="stat-l">Obsługa od gruntu do sprzedaży</div>
+      </div>
+      <div class="stat">
+        <div class="stat-v">2w1</div>
+        <div class="stat-l">Prawnik i mediator w jednej osobie</div>
+      </div>
+      <div class="stat">
+        <div class="stat-v">PL</div>
+        <div class="stat-l">Współpraca B2B cała Polska</div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<div class="gold-line" id="gl2"></div>
+
+<section id="services">
+  <div class="wrap">
+  <div class="svc-head">
+    <div class="caption">Zakres współpracy</div>
+    <h2>Czym mogę Ci <em>pomóc?</em></h2>
+  </div>
+
+  <div class="svc-grid">
+    <div class="svc-card">
+      <div class="svc-num">01</div>
+      <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      <h3>Umowy deweloperskie</h3>
+      <p>Weryfikacja i sporządzanie umów deweloperskich, analiza prospektów informacyjnych, ochrona interesów dewelopera i nabywcy na każdym etapie transakcji.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">02</div>
+      <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      <h3>Obsługa procesu inwestycyjnego</h3>
+      <p>Kompleksowe wsparcie prawne na każdym etapie — od zakupu gruntu, przez uzyskanie pozwoleń, aż po finalizację sprzedaży lokali.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">03</div>
+      <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <h3>Organizacja odbiorów lokali</h3>
+      <p>Prawna obsługa procesu odbioru, protokołów zdawczo-odbiorczych i procedur reklamacyjnych. Bezpieczny odbiór bez pułapek w dokumentacji.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">04</div>
+      <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+      <h3>Kary umowne i spory</h3>
+      <p>Analiza klauzul kar umownych, negocjacje, mediacja i reprezentacja w sporach z deweloperami. Ochrona przed konsekwencjami kosztującymi setki tysięcy złotych.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">05</div>
+      <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      <h3>Pakiet umów dla biur nieruchomości</h3>
+      <p>Kompletny zestaw umów pośrednictwa w sprzedaży i najmie — w wariantach z klauzulą wyłączności i bez. Każda umowa w dwóch wariantach.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">06</div>
+      <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+      <h3>Mediacja</h3>
+      <p>Certyfikowana mediacja w sporach inwestycyjnych i nieruchomościowych. Szybsze i znacznie tańsze rozwiązanie niż postępowanie sądowe.</p>
+    </div>
+  </div>
+  </div>
+</section>
+
+<div class="gold-line" id="gl3"></div>
+
+<section id="process">
+  <div class="wrap">
+  <div class="proc-head" id="procHead">
+    <div class="caption">Jak działam</div>
+    <h2>Proces obsługi inwestycji<br><em>krok po kroku</em></h2>
+    <p>Każda współpraca zaczyna się od bezpłatnej konsultacji telefonicznej. Dopasowuję zakres obsługi do Twoich potrzeb i harmonogramu inwestycji.</p>
+  </div>
+
+  <div class="proc-grid">
+    <div class="proc-step">
+      <div class="step-num"><span>01</span></div>
+      <h4>Konsultacja</h4>
+      <p>Bezpłatna rozmowa telefoniczna — poznaję Twój projekt i określamy zakres współpracy.</p>
+    </div>
+    <div class="proc-step">
+      <div class="step-num"><span>02</span></div>
+      <h4>Analiza</h4>
+      <p>Analizuję dokumentację, identyfikuję ryzyka prawne i przygotowuję plan działania.</p>
+    </div>
+    <div class="proc-step">
+      <div class="step-num"><span>03</span></div>
+      <h4>Obsługa</h4>
+      <p>Kompleksowe wsparcie na każdym etapie — umowy, odbiory, negocjacje i spory.</p>
+    </div>
+    <div class="proc-step">
+      <div class="step-num"><span>04</span></div>
+      <h4>Finalizacja</h4>
+      <p>Bezpieczne zamknięcie transakcji z pełną dokumentacją i zabezpieczeniem interesów.</p>
+    </div>
+  </div>
+  </div>
+</section>
+
+<div class="gold-line" id="gl4"></div>
+
+<section id="contact">
+  <div class="wrap">
+  <div class="cnt-text" id="cntText">
+    <div class="caption">Kontakt</div>
+    <h2>Porozmawiajmy<br>o Twojej <em>inwestycji</em></h2>
+    <p>Napisz lub zadzwoń — odpowiem w ciągu 24&nbsp;godzin. Pierwsza konsultacja telefoniczna jest bezpłatna.</p>
+
+    <div class="cnt-items">
+      <div class="cnt-item">
+        <div class="cnt-ico">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="cnt-item-txt"><a href="mailto:kontakt@prawnik-od-inwestycji.pl">kontakt@prawnik-od-inwestycji.pl</a></div>
+      </div>
+      <div class="cnt-item">
+        <div class="cnt-ico">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="cnt-item-txt">Współpraca B2B · Cała Polska</div>
+      </div>
+    </div>
+
+    <div class="cnt-btns">
+      <a href="https://www.instagram.com/prawnik.od.inwestcji/" target="_blank" class="btn btn-gold">
+        <span>Instagram</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61577501830303" target="_blank" class="btn btn-ghost">
+        <span>Facebook</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+    </div>
+
+    <div class="social-row">
+      <a href="https://www.instagram.com/prawnik.od.inwestcji/" target="_blank" class="soc">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61577501830303" target="_blank" class="soc">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="cnt-panel" id="cntPanel">
+    <h3>Wyślij wiadomość</h3>
+    <p class="sub">Opisz swój projekt — odpiszę w ciągu 24h.</p>
+    <form onsubmit="handleForm(event)">
+      <div class="fgrp"><label>Imię i nazwisko</label><input type="text" placeholder="Jan Kowalski" required></div>
+      <div class="fgrp"><label>Email</label><input type="email" placeholder="jan@firma.pl" required></div>
+      <div class="fgrp"><label>Temat</label><input type="text" placeholder="Umowa deweloperska, obsługa inwestycji…"></div>
+      <div class="fgrp"><label>Wiadomość</label><textarea placeholder="Opisz swój projekt lub pytanie…"></textarea></div>
+      <button type="submit" class="btn-submit"><span>Wyślij wiadomość →</span></button>
+    </form>
+  </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+  <div class="ft-logo">
+    <img src="logo.jpg" alt="Logo">
+    <span class="ft-logo-name">KC</span>
+  </div>
+  <div class="ft-mid">
+    <p>Karolina Czechowska — Radca Prawny od Inwestycji</p>
+    <p style="margin-top:4px">Radca prawny · Certyfikowany mediator</p>
+  </div>
+  <div class="ft-right">
+    <p>© 2025</p>
+    <a href="https://www.instagram.com/prawnik.od.inwestcji/" target="_blank">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61577501830303" target="_blank">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    </a>
+  </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+<script>
+gsap.registerPlugin(ScrollTrigger)
+
+const lenis = new Lenis({ lerp:.09, smoothWheel:true })
+lenis.on('scroll', ScrollTrigger.update)
+gsap.ticker.add(t => lenis.raf(t * 1000))
+gsap.ticker.lagSmoothing(0)
+
+const pgBar = document.getElementById('pg-bar')
+lenis.on('scroll', ({ progress }) => {
+  gsap.set(pgBar, { scaleX: progress })
+})
+
+function splitHeading(el) {
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT)
+  const nodes = []
+  let n
+  while (n = walker.nextNode()) nodes.push(n)
+  nodes.forEach(tn => {
+    const parts = tn.textContent.split(/(\s+)/)
+    const frag = document.createDocumentFragment()
+    parts.forEach(p => {
+      if (!p) return
+      if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(p)); return }
+      const outer = document.createElement('span')
+      outer.className = 'char-split'
+      const inner = document.createElement('span')
+      inner.className = 'char-inner'
+      inner.textContent = p
+      outer.appendChild(inner)
+      frag.appendChild(outer)
+    })
+    tn.parentNode.replaceChild(frag, tn)
+  })
+}
+
+document.querySelectorAll('.abt-text h2, .svc-head h2, .proc-head h2, .cnt-text h2').forEach(splitHeading)
+
+function revealSplitHeading(el, trigger, delay = 0) {
+  const chars = el.querySelectorAll('.char-inner')
+  gsap.fromTo(chars,
+    { y:'102%' },
+    { y:'0%', duration:.85, stagger:.038, ease:'power4.out', delay,
+      scrollTrigger:{ trigger: trigger || el, start:'top 88%', toggleActions:'play none none none' }
+    })
+}
+
+document.querySelectorAll('.abt-text h2').forEach(el => revealSplitHeading(el, '#about'))
+document.querySelectorAll('.svc-head h2').forEach(el => revealSplitHeading(el, '.svc-head'))
+document.querySelectorAll('.proc-head h2').forEach(el => revealSplitHeading(el, '#procHead'))
+document.querySelectorAll('.cnt-text h2').forEach(el => revealSplitHeading(el, '#contact'))
+
+const dot = document.getElementById('cur-dot')
+const ring = document.getElementById('cur-ring')
+let mx = 0, my = 0, rx = 0, ry = 0, vx = 0, vy = 0, pvx = 0, pvy = 0
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY
+  dot.style.left = mx + 'px'
+  dot.style.top  = my + 'px'
+})
+;(function loop(){
+  vx = mx - rx; vy = my - ry
+  rx += vx * .11; ry += vy * .11
+  ring.style.left = rx + 'px'
+  ring.style.top  = ry + 'px'
+  const speed = Math.sqrt(vx*vx + vy*vy)
+  const stretch = Math.min(1 + speed * .028, 1.9)
+  const angle = speed > 1 ? Math.atan2(vy, vx) * 180 / Math.PI : 0
+  ring.style.transform = `translate(-50%,-50%) rotate(${angle}deg) scaleX(${stretch}) scaleY(${1/stretch})`
+  requestAnimationFrame(loop)
+})()
+
+document.querySelectorAll('a,button,.svc-card,.soc,.badge,.proc-step,.gal-item').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    const isCta = el.classList.contains('btn-gold') || el.classList.contains('btn-submit')
+    document.body.classList.toggle('c-cta', isCta)
+    document.body.classList.toggle('c-hover', !isCta)
+  })
+  el.addEventListener('mouseleave', () => document.body.classList.remove('c-hover','c-cta'))
+})
+
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 70)
+}, { passive: true })
+
+function toggleNav() {
+  const n = document.getElementById('mobNav')
+  const h = document.getElementById('hbg')
+  n.classList.toggle('open')
+  h.classList.toggle('open')
+  document.body.style.overflow = n.classList.contains('open') ? 'hidden' : ''
+}
+function closeNav() {
+  document.getElementById('mobNav').classList.remove('open')
+  document.getElementById('hbg').classList.remove('open')
+  document.body.style.overflow = ''
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'))
+    if (!t) return
+    e.preventDefault()
+    lenis.scrollTo(t, { offset: -80, duration: 1.6 })
+  })
+})
+
+function preloader() {
+  const mono = document.getElementById('preMono')
+  const sub  = document.getElementById('preSub')
+  const fill = document.getElementById('preProgFill')
+  const pre  = document.getElementById('preloader')
+  requestAnimationFrame(() => {
+    mono.classList.add('vis')
+    sub.classList.add('vis')
+    fill.classList.add('vis')
+  })
+  setTimeout(() => {
+    pre.classList.add('out')
+    setTimeout(() => { pre.remove(); runHeroAnim() }, 900)
+  }, 1700)
+}
+
+window.addEventListener('load', preloader)
+
+function runHeroAnim() {
+  const tl = gsap.timeline()
+  tl.to('#heroEye', { opacity:1, x:0, duration:.8, ease:'power3.out' })
+    .to('#w1', { y:'0%', duration:1.1, ease:'power4.out' }, .15)
+    .to('#w2', { y:'0%', duration:1.1, ease:'power4.out' }, .28)
+    .to('#heroTag', { opacity:1, y:0, duration:.9, ease:'power3.out' }, .65)
+    .to('#heroRule', { width:'260px', duration:1.2, ease:'power3.out' }, .8)
+    .to('#heroDesc', { opacity:1, y:0, duration:.9, ease:'power3.out' }, .9)
+    .to('#heroActs', { opacity:1, y:0, duration:.9, ease:'power3.out' }, 1.05)
+    .to('.hero-img-box', { opacity:1, x:0, duration:1.1, ease:'power3.out' }, .4)
+
+  gsap.to('.hero-text', {
+    y: 60, ease:'none',
+    scrollTrigger:{ trigger:'#hero', start:'top top', end:'bottom top', scrub:2.5 }
+  })
+  gsap.to('.hero-img-box', {
+    y: -40, ease:'none',
+    scrollTrigger:{ trigger:'#hero', start:'top top', end:'bottom top', scrub:2 }
+  })
+}
+
+document.addEventListener('mousemove', e => {
+  const hc1 = document.querySelector('.hero-card')
+  const hc2 = document.querySelector('.hero-card2')
+  if (!hc1 || !hc2) return
+  const rx = (e.clientX / window.innerWidth - .5) * 18
+  const ry = (e.clientY / window.innerHeight - .5) * 14
+  gsap.to(hc1, { x: rx * .7, y: ry * .7, duration:.8, ease:'power2.out' })
+  gsap.to(hc2, { x: -rx * .5, y: -ry * .5, duration:.8, ease:'power2.out' })
+})
+
+gsap.fromTo('#abtImgSide',
+  { opacity:0, clipPath:'inset(0 40% 0 0)', x:-30 },
+  { opacity:1, clipPath:'inset(0 0% 0 0)', x:0, duration:1.4, ease:'power3.out',
+    scrollTrigger:{ trigger:'#about', start:'top 78%', toggleActions:'play none none none' }
+  })
+gsap.fromTo('#abtText',
+  { opacity:0, x:60 },
+  { opacity:1, x:0, duration:1.3, ease:'power3.out',
+    scrollTrigger:{ trigger:'#about', start:'top 78%', toggleActions:'play none none none' }
+  })
+gsap.to('.abt-img-box', {
+  y:-40, ease:'none',
+  scrollTrigger:{ trigger:'#about', start:'top bottom', end:'bottom top', scrub:1.5 }
+})
+ScrollTrigger.create({
+  trigger:'#abtRule', start:'top 85%',
+  onEnter: () => gsap.to('#abtRule', { width:180, duration:1.2, ease:'power3.out' })
+})
+gsap.fromTo('.badge',
+  { opacity:0, scale:.82, y:10 },
+  { opacity:1, scale:1, y:0, duration:.5, stagger:.07, ease:'back.out(1.4)',
+    scrollTrigger:{ trigger:'.badges', start:'top 86%', toggleActions:'play none none none' }
+  })
+
+function animateCounter(el, target, suffix) {
+  const obj = { val: 0 }
+  gsap.to(obj, {
+    val: parseFloat(target) || 0,
+    duration: 1.8, ease:'power2.out',
+    onUpdate: () => {
+      const v = obj.val
+      el.textContent = Number.isInteger(parseFloat(target))
+        ? Math.round(v) + (suffix || '')
+        : v.toFixed(0) + (suffix || '')
+    },
+    scrollTrigger:{ trigger:'.stats', start:'top 87%', toggleActions:'play none none none' }
+  })
+}
+
+document.querySelectorAll('.stat').forEach((stat, i) => {
+  const valEl = stat.querySelector('.stat-v')
+  const raw = valEl.textContent.trim()
+  if (raw === '360°') {
+    gsap.fromTo(stat, { opacity:0, y:24 }, { opacity:1, y:0, duration:.7, delay: i*.1, ease:'power3.out',
+      scrollTrigger:{ trigger:'.stats', start:'top 87%', toggleActions:'play none none none' }
+    })
+    return
+  }
+  gsap.fromTo(stat, { opacity:0, y:24 }, { opacity:1, y:0, duration:.7, delay: i*.1, ease:'power3.out',
+    scrollTrigger:{ trigger:'.stats', start:'top 87%', toggleActions:'play none none none' }
+  })
+})
+
+gsap.fromTo('.svc-head .caption',
+  { opacity:0, x:-20 },
+  { opacity:1, x:0, duration:.7, ease:'power3.out',
+    scrollTrigger:{ trigger:'.svc-head', start:'top 88%', toggleActions:'play none none none' }
+  })
+gsap.fromTo('.svc-card',
+  { opacity:0, y:70, rotateX:8 },
+  { opacity:1, y:0, rotateX:0, duration:.9, stagger:.09, ease:'power3.out',
+    scrollTrigger:{ trigger:'.svc-grid', start:'top 82%', toggleActions:'play none none none' }
+  })
+
+gsap.fromTo('#procHead .caption',
+  { opacity:0, x:-20 },
+  { opacity:1, x:0, duration:.7, ease:'power3.out',
+    scrollTrigger:{ trigger:'#procHead', start:'top 86%', toggleActions:'play none none none' }
+  })
+gsap.fromTo('#procHead p',
+  { opacity:0, y:20 },
+  { opacity:1, y:0, duration:.9, ease:'power3.out',
+    scrollTrigger:{ trigger:'#procHead', start:'top 86%', toggleActions:'play none none none' }
+  })
+gsap.fromTo('.proc-step',
+  { opacity:0, y:50, clipPath:'inset(30% 0 0 0)' },
+  { opacity:1, y:0, clipPath:'inset(0% 0 0 0)', duration:.9, stagger:.16, ease:'power3.out',
+    scrollTrigger:{ trigger:'.proc-grid', start:'top 84%', toggleActions:'play none none none' }
+  })
+
+gsap.fromTo('.gal-item',
+  { opacity:0, scale:.88, clipPath:'inset(20% 10% 20% 10%)' },
+  { opacity:1, scale:1, clipPath:'inset(0% 0% 0% 0%)', duration:1, stagger:.12, ease:'power3.out',
+    scrollTrigger:{ trigger:'#gallery', start:'top 82%', toggleActions:'play none none none' }
+  })
+
+gsap.fromTo('#cntText',
+  { opacity:0, x:-50 },
+  { opacity:1, x:0, duration:1.2, ease:'power3.out',
+    scrollTrigger:{ trigger:'#contact', start:'top 80%', toggleActions:'play none none none' }
+  })
+gsap.fromTo('#cntPanel',
+  { opacity:0, x:50, rotateY:4 },
+  { opacity:1, x:0, rotateY:0, duration:1.2, ease:'power3.out',
+    scrollTrigger:{ trigger:'#contact', start:'top 80%', toggleActions:'play none none none' }
+  })
+gsap.fromTo('.fgrp',
+  { opacity:0, y:18 },
+  { opacity:1, y:0, duration:.6, stagger:.09, ease:'power2.out',
+    scrollTrigger:{ trigger:'.cnt-panel', start:'top 82%', toggleActions:'play none none none' }
+  })
+
+;['#gl1','#gl2','#gl3','#gl4'].forEach(id => {
+  gsap.fromTo(id,
+    { scaleX:0, opacity:0 },
+    { scaleX:1, opacity:.28, duration:1.6, ease:'power3.out',
+      scrollTrigger:{ trigger:id, start:'top 96%', toggleActions:'play none none none' }
+    })
+})
+
+gsap.fromTo('footer .wrap > *',
+  { opacity:0, y:18 },
+  { opacity:1, y:0, duration:.8, stagger:.12, ease:'power3.out',
+    scrollTrigger:{ trigger:'footer', start:'top 92%', toggleActions:'play none none none' }
+  })
+
+document.querySelectorAll('.btn, .btn-submit').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect()
+    const dx = (e.clientX - r.left - r.width/2) * .35
+    const dy = (e.clientY - r.top - r.height/2) * .35
+    gsap.to(btn, { x:dx, y:dy, duration:.4, ease:'power2.out' })
+  })
+  btn.addEventListener('mouseleave', () => {
+    gsap.to(btn, { x:0, y:0, duration:.7, ease:'elastic.out(1,.5)' })
+  })
+})
+
+document.querySelectorAll('.svc-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect()
+    const x = (e.clientX - r.left) / r.width - .5
+    const y = (e.clientY - r.top) / r.height - .5
+    gsap.to(card, { rotateX: -y*6, rotateY: x*6, duration:.4, ease:'power2.out', transformPerspective:800 })
+  })
+  card.addEventListener('mouseleave', () => {
+    gsap.to(card, { rotateX:0, rotateY:0, duration:.7, ease:'elastic.out(1,.4)', transformPerspective:800 })
+  })
+})
+
+function handleForm(e) {
+  e.preventDefault()
+  const btn = e.target.querySelector('.btn-submit')
+  const orig = btn.innerHTML
+  btn.innerHTML = '<span>Wysłano ✓</span>'
+  btn.style.background = '#6B4520'
+  setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; e.target.reset() }, 3000)
+}
+</script>
+</body>
+</html>

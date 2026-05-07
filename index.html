@@ -652,7 +652,76 @@ footer .wrap{
 .split-line-inner{display:block;transform:translateY(105%);}
 
 .char-split{display:inline-block;overflow:hidden;vertical-align:bottom;}
-.char-inner{display:inline-block;transform:translateY(102%);}
+.char-inner{display:inline-block;transform:translateY(102%);transition:transform .85s cubic-bezier(.23,1,.32,1);}
+.char-inner.up{transform:translateY(0);}
+
+@keyframes hero-bg-shift{
+  0%,100%{opacity:.65;transform:scale(1) translate(0,0);}
+  40%{opacity:.95;transform:scale(1.1) translate(-3%,2%);}
+  70%{opacity:.5;transform:scale(.94) translate(2%,-3%);}
+}
+.hero-bg{animation:hero-bg-shift 20s ease-in-out infinite;}
+
+@keyframes cta-pulse{
+  0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(139,94,47,.3),0 6px 24px rgba(139,94,47,.1);}
+  50%{transform:scale(1.03);box-shadow:0 0 0 10px rgba(139,94,47,0),0 10px 36px rgba(139,94,47,.22);}
+}
+.btn-gold:not(:hover){animation:cta-pulse 2s ease-in-out infinite;}
+
+@keyframes pill-float{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+.hero-pills{
+  position:absolute;bottom:-62px;left:50%;
+  transform:translateX(-50%);
+  display:flex;flex-direction:row;gap:10px;z-index:4;
+}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 16px;background:var(--bg);border:1px solid var(--border);
+  font-family:'Inter',sans-serif;font-size:9.5px;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  box-shadow:0 4px 18px rgba(139,94,47,.07);white-space:nowrap;
+  animation:pill-float 3s ease-in-out infinite;
+  animation-delay:var(--d,0s);
+}
+.hero-pill-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+
+.svc-card::before{
+  content:'';position:absolute;top:0;left:0;
+  width:3px;height:100%;
+  background:linear-gradient(to bottom,var(--gold),var(--gold-l));
+  transform:scaleY(0);transform-origin:top;
+  transition:transform .3s ease;
+}
+.svc-card:hover::before{transform:scaleY(1);}
+.svc-card.will-fade{opacity:0;transform:translateY(40px);transition:opacity .65s ease,transform .65s ease;}
+.svc-card.will-fade.visible{opacity:1;transform:translateY(0);}
+
+.proc-grid::before{display:none;}
+.proc-connector{
+  position:absolute;top:27px;left:27px;right:27px;height:1px;
+  background:linear-gradient(to right,var(--gold-m),rgba(139,94,47,.18));
+  transform:scaleX(0);transform-origin:left center;opacity:.38;
+  transition:transform 1.5s cubic-bezier(.23,1,.32,1);
+}
+.proc-connector.visible{transform:scaleX(1);}
+
+@keyframes step-pulse-anim{
+  0%{box-shadow:0 0 0 0 rgba(139,94,47,.55);}
+  65%{box-shadow:0 0 0 18px rgba(139,94,47,0);}
+  100%{box-shadow:0 0 0 0 rgba(139,94,47,0);}
+}
+.step-num.pulsed{animation:step-pulse-anim .95s ease-out 1 forwards;}
+
+.reveal-up{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s ease;}
+.reveal-up.visible{opacity:1;transform:translateY(0);}
+.reveal-l{opacity:0;transform:translateX(-44px);transition:opacity 1s ease,transform 1s ease;}
+.reveal-l.visible{opacity:1;transform:translateX(0);}
+.reveal-r{opacity:0;transform:translateX(44px);transition:opacity 1s ease,transform 1s ease;}
+.reveal-r.visible{opacity:1;transform:translateX(0);}
+.reveal-scale{opacity:0;transform:scale(.88);transition:opacity .55s ease,transform .55s ease;}
+.reveal-scale.visible{opacity:1;transform:scale(1);}
+
+@media(max-width:680px){.hero-pills{display:none;}}
 
 @media(max-width:1080px){
   #hero{flex-direction:column;padding:120px 40px 80px;gap:48px;text-align:center;align-items:center;}
@@ -759,6 +828,11 @@ footer .wrap{
       <div class="hero-img-frame">
         <img src="logo.jpg" alt="Karolina Czechowska">
       </div>
+      <div class="hero-pills">
+        <div class="hero-pill" style="--d:0s"><span class="hero-pill-dot"></span>Radca prawny</div>
+        <div class="hero-pill" style="--d:.4s"><span class="hero-pill-dot"></span>Mediator</div>
+        <div class="hero-pill" style="--d:.8s"><span class="hero-pill-dot"></span>10+ lat</div>
+      </div>
     </div>
   </div>
 
@@ -769,23 +843,6 @@ footer .wrap{
 </section>
 
 <div class="gold-line" id="gl1"></div>
-
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span class="marquee-item">Umowy deweloperskie</span>
-    <span class="marquee-item">Obsługa inwestycji</span>
-    <span class="marquee-item">Mediacja</span>
-    <span class="marquee-item">Prawo nieruchomości</span>
-    <span class="marquee-item">Radca prawny</span>
-    <span class="marquee-item">Cała Polska</span>
-    <span class="marquee-item">Umowy deweloperskie</span>
-    <span class="marquee-item">Obsługa inwestycji</span>
-    <span class="marquee-item">Mediacja</span>
-    <span class="marquee-item">Prawo nieruchomości</span>
-    <span class="marquee-item">Radca prawny</span>
-    <span class="marquee-item">Cała Polska</span>
-  </div>
-</div>
 
 <section id="about">
   <div class="wrap">
@@ -901,6 +958,7 @@ footer .wrap{
   </div>
 
   <div class="proc-grid">
+    <div class="proc-connector"></div>
     <div class="proc-step">
       <div class="step-num"><span>01</span></div>
       <h4>Konsultacja</h4>
@@ -1007,11 +1065,9 @@ footer .wrap{
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
 <script>
-gsap.registerPlugin(ScrollTrigger)
+'use strict'
 
 const lenis = new Lenis({ lerp:.09, smoothWheel:true })
 lenis.on('scroll', ScrollTrigger.update)
